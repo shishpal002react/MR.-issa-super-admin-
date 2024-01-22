@@ -1,0 +1,10 @@
+.tracking-page-container-new1 {
+    display: grid;
+    grid-template-columns: 90% 10%;
+    gap: 1rem;
+
+    @media screen and (max-width: 600px) {
+        grid-template-columns: 100%;
+        
+    }
+}

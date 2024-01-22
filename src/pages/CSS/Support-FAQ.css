@@ -1,0 +1,28 @@
+.support-faq-page-container{
+    display: grid;
+    grid-template-columns: 55%  45%;
+    @media screen and (max-width: 600px) {
+        grid-template-columns: 100%;
+        
+    }
+}
+
+.support-faq-page-container1{
+    padding-right: 8%;
+    padding-left: 4%;
+    border-right: 1px solid gray;
+    @media screen and (max-width: 600px) {
+        border-right: none;
+        border-bottom: 1px solid gray;
+        
+    }
+}
+
+.support-faq-page-container2{
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+.custom-placeholder::placeholder {
+    color: #AF110C !important;
+  }
