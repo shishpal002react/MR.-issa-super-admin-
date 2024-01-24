@@ -1,12 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./form.css";
 import { Button, Carousel, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import {login_user} from "../../apiCollection/Api"
 
 export const LoginForm = () => {
   const [forgetChange, setForgetChange] = useState("login");
   const [sendLink, setLinkSend] = useState(false);
   const navigate = useNavigate();
+  const [user,setUser]=useState("");
+  const [password,setPassword]=useState("");
+
+const handlePost=(e)=>{
+  e.preventDefault();
+  const data={
+    email:user,
+    password:password
+  }
+  login_user(data,navigate);
+}
 
   return (
     <div>
@@ -85,19 +97,17 @@ export const LoginForm = () => {
               <p style={{ color: "#0C5C75", marginTop: "2.5rem" }}>
                 Super- Admin Panel
               </p>
-
               {forgetChange === "login" ? (
-                <Form
+                <Form onSubmit={handlePost}
                   style={{ marginTop: "2rem", textAlign: "left", width: "90%" }}
                 >
                   <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>User ID</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
+                    <Form.Control type="email" placeholder="Enter email" value={user} onChange={(e)=>setUser(e.target.value)}/>
                   </Form.Group>
-
                   <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
+                    <Form.Control type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
                   </Form.Group>
                   <Form.Group
                     className="mb-3"
@@ -114,7 +124,7 @@ export const LoginForm = () => {
                     }}
                   >
                     <Button
-                      onClick={() => navigate("/dashboard/contacts")}
+                      
                       style={{
                         backgroundColor: "#0C5C75",
                         color: "white",
