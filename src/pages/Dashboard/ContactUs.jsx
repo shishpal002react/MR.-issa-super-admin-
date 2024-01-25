@@ -15,6 +15,7 @@ import Select from "react-select";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import "rc-slider/assets/index.css";
 import Slider from "rc-slider";
+import {contectDetail} from "../../apiCollection/Api"
 
 // import "rc-tooltip/assets/rc-tooltip.css";
 
@@ -24,6 +25,9 @@ import { MultiSelect } from "react-multi-select-component";
 const ContactUs = () => {
   const [show, setShow] = useState(false);
   const [addContactBtn, setAddContactBtn] = useState(false);
+
+  // contect
+  const [contect,setContect]=useState("")
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -283,6 +287,10 @@ const ContactUs = () => {
       </Modal>
     );
   }
+
+  useEffect(()=>{
+    contectDetail(setContect);
+  },[])
 
   return (
     <>
@@ -571,7 +579,7 @@ const ContactUs = () => {
                       fontWeight: "500",
                     }}
                   >
-                    <p>Lorem Ipsum</p>
+                    <p>{contect?.supportPhone}</p>
                   </td>
                 </tr>
                 <tr>
@@ -594,7 +602,7 @@ const ContactUs = () => {
                       fontWeight: "500",
                     }}
                   >
-                    <p>Lorem Ipsum</p>
+                    <p>{contect?.teamEmail}</p>
                   </td>
                 </tr>
                 <tr>
@@ -617,7 +625,7 @@ const ContactUs = () => {
                       fontWeight: "500",
                     }}
                   >
-                    <p>Lorem Ipsum</p>
+                    <p>{contect?.supportText}</p>
                   </td>
                 </tr>
                 <tr>
@@ -640,7 +648,7 @@ const ContactUs = () => {
                       fontWeight: "500",
                     }}
                   >
-                    <p>Lorem Ipsum</p>
+                    <p>{contect?.saleFax}</p>
                   </td>
                 </tr>
               </tbody>

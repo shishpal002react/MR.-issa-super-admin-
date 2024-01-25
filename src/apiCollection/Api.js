@@ -39,7 +39,7 @@ export const login_user = async (payLoad, navigate) => {
 };
 
 
-export const contectDetail = async () => {
+export const contectDetail = async (setContect) => {
   try {
     const res = await axios.get(
       `${BaseUrl}ContactDetails/viewContactDetails`

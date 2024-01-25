@@ -10,14 +10,17 @@ import {
 import "../CSS/Contacts.css";
 import Select from "react-select";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import {contectDetail} from '../../apiCollection/Api'
 
 import Modal from "react-bootstrap/Modal";
 const Contacts = () => {
   const [show, setShow] = useState(false);
   const [addContactBtn, setAddContactBtn] = useState("");
   const initialText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vestibulum erat erat, eu dapibus quam lobortis vitae. Aenean ut tellus ex. Donec vel risus ut urna scelerisque maximus. Duis vestibulum, enim sit amet fermentum vulputate, justo neque rhoncus mi, sed tempor justo velit nec dui. Maecenas condimentum condimentum tincidunt. Aliquam gravida eleifend sollicitudin. Fusce a nulla non dolor finibus vestibulum eu eu quam. Etiam volutpat viverra pretium. Fusce pulvinar velit tortor, sed luctus quam dignissim vitae. Etiam consequat porttitor velit id luctus. Sed vulputate tortor eu bibendum luctus. Integer a lectus non magna vestibulum pharetra. Vivamus ultrices metus vel purus iaculis mollis. Morbi sem diam, lacinia vitae ex facilisis, eleifend viverra metus. Donec pretium est tortor, non posuere quam vulputate id.`;
-
+  
   const [showMore, setShowMore] = useState(false);
+  // contect information
+  const [contect,setContect]=useState("")
 
   const toggleShowMore = () => {
     setShowMore(!showMore);
@@ -402,6 +405,10 @@ const Contacts = () => {
     );
   }
 
+  useEffect(()=>{
+    contectDetail(setContect)
+  },[])
+
   return (
     <>
       <MyVerticallyCenteredModal
@@ -437,7 +444,7 @@ const Contacts = () => {
               alt="user"
             />
             <p>
-              <p style={{ fontWeight: "bold", color: "black" }}>Jhon Smith</p>
+              <p style={{ fontWeight: "bold", color: "black" }}>{contect?.name}</p>
               <p
                 style={{
                   display: "flex",
@@ -471,7 +478,7 @@ const Contacts = () => {
                 <span>
                   EMAIL -{" "}
                   <span style={{ color: "black", fontWeight: "normal" }}>
-                    loremipsum@gmail.com
+                    {contect?.teamEmail}
                   </span>{" "}
                 </span>
               </p>
@@ -489,7 +496,7 @@ const Contacts = () => {
                   src="/Dashboard/call.png"
                   alt=""
                 />
-                <span>PHONE -</span>
+                <span>PHONE -</span> {contect?.supportTrainingPhone}
               </p>
               <p
                 style={{
@@ -505,7 +512,7 @@ const Contacts = () => {
                   src="/Dashboard/call.png"
                   alt=""
                 />
-                <span>ADDRESS -</span>
+                <span>ADDRESS </span> {`${contect?.city}  ${contect?.state}`}
               </p>
               <p
                 style={{
